@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Counter App — stile
+   Nomi di classi e variabili in camelCase
+   ========================================================================== */
+
+/* ---------- Variabili (tema chiaro) ---------- */
+:root {
+  --colorBackground: #f3efe6;
+  --colorSurface: #fffdf8;
+  --colorInk: #1d1b18;
+  --colorMuted: #6f695f;
+  --colorBorder: #e3ddcf;
+  --colorPositive: #1f7a4d;
+  --colorNegative: #c2412d;
+  --colorAccent: #1d1b18;
+  --colorAccentText: #fffdf8;
+  --colorSelected: #ebe5d6;
+
+  --fontBody: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fontDisplay: "Space Grotesk", "Inter", system-ui, sans-serif;
+
+  --radiusCard: 28px;
+  --radiusPill: 999px;
+  --shadowCard: 0 1px 2px rgba(29, 27, 24, 0.06), 0 18px 40px -18px rgba(29, 27, 24, 0.25);
+}
+
+/* ---------- Tema scuro automatico ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colorBackground: #161513;
+    --colorSurface: #211f1c;
+    --colorInk: #f1ece2;
+    --colorMuted: #a39d92;
+    --colorBorder: #36322c;
+    --colorPositive: #5cc98f;
+    --colorNegative: #f07a62;
+    --colorAccent: #f1ece2;
+    --colorAccentText: #161513;
+    --colorSelected: #34302a;
+    --shadowCard: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--colorBackground);
+  color: var(--colorInk);
+  font-family: var(--fontBody);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--colorPositive);
+  outline-offset: 3px;
+}
+
+.noScriptMessage {
+  text-align: center;
+  color: var(--colorNegative);
+}
+
+/* ---------- Card del counter ---------- */
+.appRoot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.counterCard {
+  width: min(100%, 400px);
+  padding: 36px 28px 28px;
+  background: var(--colorSurface);
+  border: 1px solid var(--colorBorder);
+  border-radius: var(--radiusCard);
+  box-shadow: var(--shadowCard);
+  text-align: center;
+}
+
+.counterHeader {
+  margin-bottom: 8px;
+}
+
+.counterTitle {
+  margin: 0;
+  font-family: var(--fontDisplay);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.counterSubtitle {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--colorMuted);
+}
+
+/* ---------- Valore ---------- */
+.counterValue {
+  display: block;
+  margin: 12px 0 24px;
+  font-family: var(--fontDisplay);
+  font-size: clamp(4.5rem, 24vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  transition: color 0.2s ease;
+}
+
+.counterValue.isPositive {
+  color: var(--colorPositive);
+}
+
+.counterValue.isNegative {
+  color: var(--colorNegative);
+}
+
+.counterValue.isBumping {
+  animation: valueBump 0.22s ease-out;
+}
+
+@keyframes valueBump {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Pulsanti + e − ---------- */
+.counterControls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.controlButton {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  font-family: var(--fontDisplay);
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform 0.12s ease, background-color 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.controlButton:active,
+.controlButton.isActive {
+  transform: scale(0.93);
+}
+
+.decrementButton {
+  background: transparent;
+  border: 2px solid var(--colorBorder);
+}
+
+.decrementButton:hover {
+  border-color: var(--colorInk);
+}
+
+.incrementButton {
+  background: var(--colorAccent);
+  color: var(--colorAccentText);
+  border: 2px solid var(--colorAccent);
+}
+
+.incrementButton:hover {
+  opacity: 0.88;
+}
+
+/* ---------- Opzioni: passo e reset ---------- */
+.counterOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid var(--colorBorder);
+}
+
+.stepSelector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepLabel {
+  font-size: 0.85rem;
+  color: var(--colorMuted);
+}
+
+.stepGroup {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--colorBorder);
+  border-radius: var(--radiusPill);
+}
+
+.stepButton {
+  min-width: 40px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--radiusPill);
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: background-color 0.2s ease;
+}
+
+.stepButton.isSelected {
+  background: var(--colorSelected);
+}
+
+.resetButton {
+  padding: 8px 14px;
+  border: 1px solid var(--colorBorder);
+  border-radius: var(--radiusPill);
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease, transform 0.12s ease;
+}
+
+.resetButton:hover {
+  border-color: var(--colorInk);
+}
+
+.resetButton.isActive {
+  transform: scale(0.95);
+}
+
+/* ---------- Suggerimento tastiera ---------- */
+.keyboardHint {
+  margin: 20px 0 0;
+  font-size: 0.78rem;
+  color: var(--colorMuted);
+}
+
+/* ---------- Schermi piccoli ---------- */
+@media (max-width: 360px) {
+  .counterCard {
+    padding: 28px 18px 22px;
+  }
+
+  .counterOptions {
+    justify-content: center;
+  }
+}
+
+/* ---------- Animazioni ridotte per chi le ha disattivate ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
