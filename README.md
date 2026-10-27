@@ -41,12 +41,21 @@ Il file `index.html` contiene soltanto un contenitore vuoto (`<main id="app">`):
 ## Screenshot
 
 <p align="center">
-  <img src="img/screenshot.png" alt="Counter App su desktop" width="600">
+  <img src="img/screenshotDark.png" alt="Counter App su desktop, tema scuro" width="600">
 </p>
 
 <p align="center">
-  <img src="img/screenshotMobile.png" alt="Counter App su smartphone" width="260">
+  <img src="img/screenshotMobileDark.png" alt="Counter App su smartphone, tema scuro" width="260">
 </p>
+
+### Tema chiaro e scuro
+
+L'app usa automaticamente il tema chiaro o scuro in base alle impostazioni del sistema operativo. Non è un'incoerenza: a seconda del dispositivo vedrai l'una o l'altra versione.
+
+| Tema chiaro | Tema scuro |
+|:---:|:---:|
+| <img src="img/screenshot.png" alt="Tema chiaro" width="380"> | <img src="img/screenshotDark.png" alt="Tema scuro" width="380"> |
+| <img src="img/screenshotMobile.png" alt="Tema chiaro su smartphone" width="180"> | <img src="img/screenshotMobileDark.png" alt="Tema scuro su smartphone" width="180"> |
 
 ## Funzionalità
 
@@ -98,8 +107,10 @@ counterApp/
 │   └── app.js            → punto di ingresso: collega logica, interfaccia ed eventi
 └── img/
     ├── favicon.svg       → icona della pagina
-    ├── screenshot.png    → screenshot desktop
-    └── screenshotMobile.png → screenshot mobile
+    ├── screenshot.png           → screenshot desktop, tema chiaro
+    ├── screenshotDark.png       → screenshot desktop, tema scuro
+    ├── screenshotMobile.png     → screenshot mobile, tema chiaro
+    └── screenshotMobileDark.png → screenshot mobile, tema scuro
 ```
 
 Tutti i nomi di file, funzioni, variabili e classi CSS seguono la convenzione **camelCase**.
